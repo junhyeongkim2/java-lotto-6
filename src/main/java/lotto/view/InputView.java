@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class InputView {
 
     private static final String BUYAMOUBT_PATTERN = "^[0-9]+";
+    private static final String WINNINGNUMBER_PATTERN = "^[0-9,]+$";
 
 
     public static String readBuyAmount() {
@@ -20,6 +21,7 @@ public class InputView {
     public static String readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
+        validateWinningNumbersForm(input);
         System.out.println();
         return input;
     }
@@ -40,7 +42,12 @@ public class InputView {
         if (Integer.parseInt(input) % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 잘못된 구입금액이 입력되었습니다! 다시 입력해 주세요.");
         }
+    }
 
+    public static void validateWinningNumbersForm(String input) {
+        if (!Pattern.matches(WINNINGNUMBER_PATTERN, input)) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 당첨번호가 입력되었습니다! 다시 입력해 주세요.");
+        }
     }
 
 
