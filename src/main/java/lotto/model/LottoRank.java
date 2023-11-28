@@ -41,5 +41,9 @@ public enum LottoRank {
         return LottoRank.NONE;
     }
 
+    public int getPrize() {
+        return this.prize;
+    }
+
 
 }

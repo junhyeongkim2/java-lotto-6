@@ -30,7 +30,20 @@ public class LottoResultTest {
         assertThat(LottoResult.getResult().get(LottoRank.NONE)).isEqualTo(0);
     }
 
+    @DisplayName("수익률 계산 테스트")
+    @Test
+    void calculateProfit_EqualResult_Success() {
+        //given
+        LottoResult.of(
+                List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 7, 8))),
+                WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6)));
+        //when
 
+        float profit = LottoResult.calculateProfit(5000);
+
+        //then
+        assertThat(profit).isEqualTo(2.000045E7f);
+    }
 
 
 }

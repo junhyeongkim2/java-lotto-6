@@ -28,5 +28,9 @@ public class LottoResult {
         return result;
     }
 
-
+    public static float calculateProfit(int buyAmount) {
+        int sum = Arrays.stream(LottoRank.values()).mapToInt(lottoRank -> result.get(lottoRank) * lottoRank.getPrize())
+                .sum();
+        return (float) ((sum - buyAmount) / 100.0);
+    }
 }
