@@ -8,15 +8,19 @@ import java.util.stream.Collectors;
 
 public class LottoResult {
 
-    private static LottoResult lottoResult;
-    private static Map<LottoRank, Integer> result = new EnumMap<>(LottoRank.class);
+    private static Map<LottoRank, Integer> result;
 
     private LottoResult() {
+        result = new EnumMap<LottoRank, Integer>(LottoRank.class);
+        initializeResult();
+    }
+
+    private void initializeResult() {
+        Arrays.stream(LottoRank.values()).forEach(lottoRank -> result.put(lottoRank, 0));
     }
 
     public static LottoResult of(List<Lotto> lottos, WinningNumbers winningNumbers) {
-        Arrays.stream(LottoRank.values()).forEach(lottoRank -> result.put(lottoRank, 0));
-
+        LottoResult lottoResult = new LottoResult();
         lottos.stream().map(lotto -> LottoRank.valueOf(winningNumbers.calculateContainCount(lotto),
                         winningNumbers.isBonus(lotto)))
                 .forEach(lottoRank -> result.put(lottoRank, result.get(lottoRank) + 1));

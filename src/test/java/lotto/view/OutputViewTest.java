@@ -5,6 +5,9 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
+import lotto.model.LottoResult;
+import lotto.model.WinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 public class OutputViewTest {
+
 
     ByteArrayOutputStream captureOutputValues() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -42,6 +46,20 @@ public class OutputViewTest {
         ByteArrayOutputStream output = captureOutputValues();
         //when
         OutputView.printLottos(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(5, 6, 7, 8, 9, 10))));
+        //then
+        assertThat(output.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]\n[5, 6, 7, 8, 9, 10]\n");
+    }
+
+    @DisplayName("당첨 통계 출력 테스트")
+    @Test
+    void printResult_EqualResult_Success() {
+        //given
+        ByteArrayOutputStream output = captureOutputValues();
+
+        LottoResult.of(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 10, 11, 12))),
+                WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6)));
+        //when
+        OutputView.printResult(LottoResult.getResult());
         //then
         assertThat(output.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]\n[5, 6, 7, 8, 9, 10]\n");
     }
