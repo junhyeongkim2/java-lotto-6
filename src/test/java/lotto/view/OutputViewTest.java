@@ -70,4 +70,16 @@ public class OutputViewTest {
                         + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n"
                         + "6개 일치 (2,000,000,000원) - 1개\n");
     }
+
+    @DisplayName("수익률 출력 테스트")
+    @Test
+    void printProfit_EqualOutput_Success() {
+        //given
+        ByteArrayOutputStream output = captureOutputValues();
+        float profit = 12.334f;
+        //when
+        OutputView.printProfit(profit);
+        //then
+        assertThat(output.toString()).isEqualTo("총 수익률은 12.3%입니다.");
+    }
 }
