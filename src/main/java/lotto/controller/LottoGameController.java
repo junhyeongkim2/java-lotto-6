@@ -29,6 +29,7 @@ public class LottoGameController {
                 .collect(Collectors.toList());
         validateDuplicatedWinningNumbers(winningNumbers);
         validateIsInRangeWinningNumbers(winningNumbers);
+        validateIsSixWinningNumbers(winningNumbers);
         return winningNumbers;
     }
 
@@ -44,6 +45,12 @@ public class LottoGameController {
             if (winningNumber < 1 || winningNumber > 45) {
                 throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호가 입력되었습니다. 다시 입력해 주세요.");
             }
+        }
+    }
+
+    public static void validateIsSixWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호가 입력되었습니다. 다시 입력해 주세요.");
         }
     }
 
