@@ -13,10 +13,10 @@ public class WinningNumbersTest {
     @Test
     void createWinningNumbers_EqualNumbers_Success() {
         //given
-        WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,6",7);
+        WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
         //when
         List<Integer> numbers = winningNumbers.getWinningNumbers();
-        int bonusNumber = winningNumbers.getBonusNumber();
+        int bonusNumber = 7;
         //then
         assertThat(numbers.size()).isEqualTo(6);
         assertThat(numbers).allSatisfy(value -> assertThat(value).isBetween(1, 45));

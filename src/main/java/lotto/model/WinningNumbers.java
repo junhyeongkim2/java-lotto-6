@@ -8,32 +8,23 @@ import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
-    private int bonusNumber;
 
-    private WinningNumbers(String winningNumbers, int bonusNumber) {
+    private WinningNumbers(String winningNumbers) {
         this.winningNumbers = splitWinningNumbers(winningNumbers);
-        this.bonusNumber = bonusNumber;
     }
 
-    public static WinningNumbers from(String winningNumbers, int bonusNumber) {
-        return new WinningNumbers(winningNumbers, bonusNumber);
+    public static WinningNumbers from(String winningNumbers) {
+        return new WinningNumbers(winningNumbers);
     }
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
-
     public int calculateContainCount(Lotto lotto) {
         return (int) lotto.getLottoNumbers().stream().filter(number -> winningNumbers.contains(number)).count();
     }
 
-    public Boolean isBonus(Lotto lotto) {
-        return lotto.getLottoNumbers().contains(bonusNumber);
-    }
 
     public List<Integer> splitWinningNumbers(String input) {
         List<Integer> winningNumbers = Arrays.stream(input.split(",")).map(Integer::parseInt)
@@ -64,4 +55,7 @@ public class WinningNumbers {
         }
     }
 
+    public boolean isBonus(Lotto lotto, int bonusNumber) {
+        return lotto.getLottoNumbers().contains(bonusNumber);
+    }
 }

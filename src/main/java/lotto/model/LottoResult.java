@@ -19,10 +19,10 @@ public class LottoResult {
         Arrays.stream(LottoRank.values()).forEach(lottoRank -> result.put(lottoRank, 0));
     }
 
-    public static LottoResult of(List<Lotto> lottos, WinningNumbers winningNumbers) {
+    public static LottoResult of(List<Lotto> lottos, WinningNumbers winningNumbers, int bonusNumber) {
         LottoResult lottoResult = new LottoResult();
         lottos.stream().map(lotto -> LottoRank.valueOf(winningNumbers.calculateContainCount(lotto),
-                        winningNumbers.isBonus(lotto)))
+                        winningNumbers.isBonus(lotto, bonusNumber)))
                 .forEach(lottoRank -> result.put(lottoRank, result.get(lottoRank) + 1));
         return lottoResult;
     }
@@ -33,7 +33,8 @@ public class LottoResult {
     }
 
     public static float calculateProfit(float buyAmount) {
-        float sum = Arrays.stream(LottoRank.values()).mapToInt(lottoRank -> result.get(lottoRank) * lottoRank.getPrize())
+        float sum = Arrays.stream(LottoRank.values())
+                .mapToInt(lottoRank -> result.get(lottoRank) * lottoRank.getPrize())
                 .sum();
         return (float) ((sum / buyAmount) * 100.0);
     }

@@ -35,7 +35,7 @@ public class OutputViewTest {
         //when
         OutputView.printLottoAmount(5);
         //then
-        assertThat(output.toString()).isEqualTo("5\n");
+        assertThat(output.toString()).isEqualTo("5개를 구매했습니다.\n");
     }
 
 
@@ -47,7 +47,7 @@ public class OutputViewTest {
         //when
         OutputView.printLottos(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(5, 6, 7, 8, 9, 10))));
         //then
-        assertThat(output.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]\n[5, 6, 7, 8, 9, 10]\n");
+        assertThat(output.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]\n[5, 6, 7, 8, 9, 10]\n\n");
     }
 
     @DisplayName("당첨 통계 출력 테스트")
@@ -57,7 +57,7 @@ public class OutputViewTest {
         ByteArrayOutputStream output = captureOutputValues();
 
         LottoResult.of(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 10, 11, 12))),
-                WinningNumbers.from("1,2,3,4,5,6",7));
+                WinningNumbers.from("1,2,3,4,5,6"),7);
         //when
         OutputView.printResult(LottoResult.getResult());
         //then
