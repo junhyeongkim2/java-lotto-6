@@ -11,7 +11,8 @@ public class InputView {
     public static String readBuyAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        validateBuyAmount(input);
+        validateBuyAmountForm(input);
+        validateBuyAmountIsThousand(input);
         System.out.println();
         return input;
     }
@@ -29,10 +30,17 @@ public class InputView {
         return input;
     }
 
-    public static void validateBuyAmount(String input) {
+    public static void validateBuyAmountForm(String input) {
         if (!Pattern.matches(BUYAMOUBT_PATTERN, input)) {
             throw new IllegalArgumentException("[ERROR] 잘못된 구입금액이 입력되었습니다! 다시 입력해 주세요.");
         }
+    }
+
+    public static void validateBuyAmountIsThousand(String input) {
+        if (Integer.parseInt(input) % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 구입금액이 입력되었습니다! 다시 입력해 주세요.");
+        }
+
     }
 
 
