@@ -19,8 +19,7 @@ public class LottoGameController {
         List<Lotto> lottos = LottosFactory.create(money);
         OutputView.printLottos(lottos);
         WinningNumbers winningNumbers = WinningNumbers.from(repeatUntilValid(InputView::readWinningNumbers));
-        int bonusNumber = Integer.parseInt(InputView.readBonusNumber());
-        LottoResult.of(lottos, winningNumbers, bonusNumber);
+        LottoResult.of(lottos, winningNumbers, Integer.parseInt(repeatUntilValid(InputView::readBonusNumber)));
         OutputView.printResult(LottoResult.getResult());
         OutputView.printProfit(LottoResult.calculateProfit(money));
     }
