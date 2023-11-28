@@ -25,7 +25,26 @@ public class LottoGameController {
     }
 
     public List<Integer> splitWiningNumbers(String input) {
-        return Arrays.stream(input.split(",")).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> winningNumbers = Arrays.stream(input.split(",")).map(Integer::parseInt)
+                .collect(Collectors.toList());
+        validateDuplicatedWinningNumbers(winningNumbers);
+        validateIsInRangeWinningNumbers(winningNumbers);
+        return winningNumbers;
+    }
+
+
+    public void validateDuplicatedWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.stream().distinct().count() != winningNumbers.stream().count()) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호가 입력되었습니다. 다시 입력해 주세요.");
+        }
+    }
+
+    public void validateIsInRangeWinningNumbers(List<Integer> winningNumbers) {
+        for (int winningNumber : winningNumbers) {
+            if (winningNumber < 1 || winningNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호가 입력되었습니다. 다시 입력해 주세요.");
+            }
+        }
     }
 
 

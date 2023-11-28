@@ -33,9 +33,5 @@ public class WinningNumbers {
         return lotto.getLottoNumbers().contains(bonusNumber);
     }
 
-    public void validateWinningNumbers(List<Integer> winningNumbers) {
-        if (winningNumbers.stream().distinct().count() != winningNumbers.stream().count()) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호가 입력되었습니다. 다시 입력해 주세요.");
-        }
-    }
+
 }
