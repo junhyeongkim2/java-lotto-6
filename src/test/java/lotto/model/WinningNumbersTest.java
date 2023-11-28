@@ -13,7 +13,7 @@ public class WinningNumbersTest {
     @Test
     void createWinningNumbers_EqualNumbers_Success() {
         //given
-        WinningNumbers winningNumbers = WinningNumbers.create();
+        WinningNumbers winningNumbers = WinningNumbers.from(List.of(1,2,3,4,5,6));
         //when
         List<Integer> numbers = winningNumbers.getWinningNumbers();
         int bonusNumber = winningNumbers.getBonusNumber();

@@ -12,13 +12,10 @@ public class WinningNumbers {
         this.bonusNumber = createBonusNumber();
     }
 
-    public static WinningNumbers create() {
-        return new WinningNumbers(createRandomNumbers());
+    public static WinningNumbers from(List<Integer> numbers) {
+        return new WinningNumbers(numbers);
     }
 
-    public static List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
 
     public int createBonusNumber() {
         while (true) {
