@@ -23,6 +23,18 @@ public class OutputViewTest {
     }
 
 
+    @DisplayName("로또 구입 개수 출력 테스트")
+    @Test
+    void printLottoAmount_EqualResult_Success() {
+        //given
+        ByteArrayOutputStream output = captureOutputValues();
+        //when
+        OutputView.printLottoAmount(5);
+        //then
+        assertThat(output.toString()).isEqualTo("5\n");
+    }
+
+
     @DisplayName("로또 생성 출력 테스트")
     @Test
     void printLottos_EqualResult_Success() {
