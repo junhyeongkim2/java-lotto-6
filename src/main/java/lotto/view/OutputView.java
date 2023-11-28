@@ -10,11 +10,12 @@ public class OutputView {
 
 
     public static void printLottoAmount(int lottoAmount) {
-        System.out.println(lottoAmount);
+        System.out.println(lottoAmount+"개를 구매했습니다.");
     }
 
     public static void printLottos(List<Lotto> lottos) {
         lottos.stream().forEach(lotto -> System.out.println(lotto.getLottoNumbers().toString()));
+        System.out.println();
     }
 
 
