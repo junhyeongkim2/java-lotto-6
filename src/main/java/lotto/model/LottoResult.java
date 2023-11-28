@@ -1,8 +1,10 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoResult {
 
@@ -12,7 +14,11 @@ public class LottoResult {
     }
 
     public static Map<LottoRank, Integer> create(List<Lotto> lottos, WinningNumbers winningNumbers) {
+        Arrays.stream(LottoRank.values()).forEach(lottoRank -> result.put(lottoRank, 0));
 
+        lottos.stream().map(lotto -> LottoRank.valueOf(winningNumbers.calculateContainCount(lotto),
+                        winningNumbers.isBonus(lotto)))
+                .forEach(lottoRank -> result.put(lottoRank, result.get(lottoRank) + 1));
         return result;
     }
 

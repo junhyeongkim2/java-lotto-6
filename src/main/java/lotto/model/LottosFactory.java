@@ -1,13 +1,19 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottosFactory {
+
+    private static List<Lotto> lottos = new ArrayList<>();
+
+    private LottosFactory() {
+    }
+
     public static List<Lotto> create(int money) {
         int lottoAmount = calculateLottoAmount(money);
-        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoAmount; i++) {
             lottos.add(createLotto());
         }

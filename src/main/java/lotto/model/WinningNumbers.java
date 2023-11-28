@@ -37,4 +37,12 @@ public class WinningNumbers {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
+    public int calculateContainCount(Lotto lotto) {
+        return (int) lotto.getLottoNumbers().stream().filter(number -> winningNumbers.contains(number)).count();
+    }
+
+    public Boolean isBonus(Lotto lotto) {
+        return lotto.getLottoNumbers().contains(bonusNumber);
+    }
 }
