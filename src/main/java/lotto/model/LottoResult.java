@@ -13,7 +13,7 @@ public class LottoResult {
     private LottoResult() {
     }
 
-    public static Map<LottoRank, Integer> create(List<Lotto> lottos, WinningNumbers winningNumbers) {
+    public static Map<LottoRank, Integer> of(List<Lotto> lottos, WinningNumbers winningNumbers) {
         Arrays.stream(LottoRank.values()).forEach(lottoRank -> result.put(lottoRank, 0));
 
         lottos.stream().map(lotto -> LottoRank.valueOf(winningNumbers.calculateContainCount(lotto),
