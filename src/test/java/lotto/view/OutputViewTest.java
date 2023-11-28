@@ -57,7 +57,7 @@ public class OutputViewTest {
         ByteArrayOutputStream output = captureOutputValues();
 
         LottoResult.of(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 10, 11, 12))),
-                WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6),7));
+                WinningNumbers.from("1,2,3,4,5,6",7));
         //when
         OutputView.printResult(LottoResult.getResult());
         //then

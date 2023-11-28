@@ -17,7 +17,7 @@ public class LottoResultTest {
         //given
         LottoResult.of(
                 List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 7, 8))),
-                WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6),7));
+                WinningNumbers.from("1,2,3,4,5,6",7));
         //when
 
         //then
@@ -36,7 +36,7 @@ public class LottoResultTest {
         //given
         LottoResult.of(
                 List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 7, 8))),
-                WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6), 7));
+                WinningNumbers.from("1,2,3,4,5,6", 7));
         //when
 
         float profit = LottoResult.calculateProfit(5000);
